@@ -38,6 +38,8 @@ jobs:
 
       - name: commit 
         run: |
+          git config --local user.name ${{ github.actor }}
+          git config --local user.email "${{ github.actor }}@users.noreply.github.com"
           git add test.xml
           git commit -m "new data from scheduled job"
           git log --name-only
