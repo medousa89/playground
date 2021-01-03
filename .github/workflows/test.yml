@@ -34,7 +34,11 @@ jobs:
       - name: run
         run: |
           echo '<?xml version="1.0" encoding="UTF-8" ?>' > test.xml
+          echo '<tv generator-info-name="sdg" generator-info-url="http://www.satdreamgr.com">' >> test.xml
           python test.py >> test.xml
+          echo '</tv>' >> test.xml
+          tv_sort --by-channel --duplicate-error --output new.xml test.xml
+          mv new.xml test.html
 
       - name: commit 
         run: |
