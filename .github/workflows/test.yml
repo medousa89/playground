@@ -38,7 +38,7 @@ jobs:
           python test.py >> test.xml
           echo '</tv>' >> test.xml
           tv_sort --by-channel --duplicate-error --output new.xml test.xml
-          mv new.xml test.html
+          mv new.xml test.xml
 
       - name: commit 
         run: |
