@@ -50,6 +50,8 @@ jobs:
           git commit -m "new data from job ${{ github.run_number }}"
           git pull origin "${{ github.ref }}" --autostash --rebase -Xours
           git push origin "${{ github.ref }}"
+          git tag -d test
+          git push origin :refs/tags/test
           git log --name-only
           git status
 
@@ -63,6 +65,7 @@ jobs:
           release_name: test
           draft: false
           prerelease: false
+
       - name: Upload Release Asset
         id: upload-release-asset 
         uses: actions/upload-release-asset@v1
