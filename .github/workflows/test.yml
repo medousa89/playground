@@ -37,6 +37,7 @@ jobs:
           echo '<tv generator-info-name="sdg" generator-info-url="http://www.satdreamgr.com">' >> test.xml
           python test.py >> test.xml
           echo '</tv>' >> test.xml
+          echo '<!-- generated on '`date -u`' -->'
           tv_sort --by-channel --duplicate-error --output new.xml test.xml
           mv new.xml test.xml
           gzip -k test.xml
