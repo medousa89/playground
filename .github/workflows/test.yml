@@ -37,8 +37,8 @@ jobs:
           echo '<tv generator-info-name="sdg" generator-info-url="http://www.satdreamgr.com">' >> test.xml
           python test.py >> test.xml
           echo '</tv>' >> test.xml
-          echo '<!-- generated on '`date -u`' -->'
           tv_sort --by-channel --duplicate-error --output new.xml test.xml
+          echo '<!-- generated on '`date -u`' -->' >> new.xml
           mv new.xml test.xml
           gzip -k test.xml
 
@@ -50,7 +50,6 @@ jobs:
           git commit -m "new data from job ${{ github.run_number }}"
           git pull origin "${{ github.ref }}" --autostash --rebase -Xours
           git push origin "${{ github.ref }}"
-          git tag -d test
           git push origin :refs/tags/test
           git log --name-only
           git status
